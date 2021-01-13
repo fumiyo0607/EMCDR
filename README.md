@@ -18,7 +18,12 @@ emcdr/
 +-- model/
 ¦ 
 +-- vector/
-¦   +-- {users / items}_{MODEL_NAME}_{PARAMETERS}_{source / target}_{trained / mapped}
-¦
+¦   +-- users/
+¦       +-- bpr/
+¦       ¦    +-- bpr_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       +-- doc2vec/
+¦       ¦    +-- doc2vec_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       +-- lda/
+¦            +-- lda_{PARAMETERS}_{source / target}_{trained / mapped}
 +-- data/
 ```
