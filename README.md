@@ -2,7 +2,7 @@
 Cross-Domain Recommendation: An Embedding and Mapping Approach
 
 ## Directory Structure
-
+ - model depending > data depending
 ```
 emcdr/
 ¦-- main.py
