@@ -1,4 +1,6 @@
 # emcdr
+Cross-Domain Recommendation: An Embedding and Mapping Approach
+
 ## Directory Structure
 
 ```
