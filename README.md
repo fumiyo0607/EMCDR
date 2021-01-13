@@ -1,5 +1,6 @@
 # emcdr
-## ディレクトリ構造
+## Directory Structure
+
 ```
 emcdr/
 ¦-- main.py
