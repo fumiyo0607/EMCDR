@@ -6,7 +6,6 @@ emcdr/
 ¦-- main.py
 ¦-- util.py
 ¦-- .gitignore
-¦-- data/
 ¦
 +-- Latent_Factor_Modeling/
 ¦   +-- bpr.py
@@ -19,5 +18,7 @@ emcdr/
 +-- model/
 ¦ 
 +-- vector/
-    +-- {users / items}_{MODEL_NAME}_{PARAMETERS}_{source / target}_{trained / mapped}
+¦   +-- {users / items}_{MODEL_NAME}_{PARAMETERS}_{source / target}_{trained / mapped}
+¦
++-- data/
 ```
