@@ -18,6 +18,11 @@ emcdr/
 ¦   +-- mlp.py 
 ¦
 +-- model/
+¦       +-- bpr/
+¦       +-- doc2vec/
+¦       ¦    +-- doc2vec_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       +-- lda/
+¦            +-- lda_{PARAMETERS}_{source / target}_{trained / mapped}
 ¦ 
 +-- vector/
 ¦   +-- users/
