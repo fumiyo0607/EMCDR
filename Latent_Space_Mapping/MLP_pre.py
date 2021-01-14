@@ -20,6 +20,8 @@ def MLP(input_Vs, input_Vt, beta, learning_rate, training_epochs, display_step=1
     '''
 
     k, m = np.shape(input_Vs)
+    # k : embedding dimension
+    # m : item / user num 
 
     # 1. 初始化参数
     w1 = tf.Variable(tf.truncated_normal([2 * k, k], stddev = 0.1), name="w1")

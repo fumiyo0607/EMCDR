@@ -1,2 +1,2 @@
-model_checkpoint_path: "mlp"
-all_model_checkpoint_paths: "mlp"
+model_checkpoint_path: "mlp_beta=0.001_learning_rate=0.03_epochs=500"
+all_model_checkpoint_paths: "mlp_beta=0.001_learning_rate=0.03_epochs=500"

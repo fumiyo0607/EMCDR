@@ -1,0 +1,6 @@
+/data
+/__pycache__
+install.*
+/model
+/vector
+.DS_Store

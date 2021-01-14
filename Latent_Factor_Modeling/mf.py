@@ -26,6 +26,8 @@ def MF(data, k, learning_rate, beta, training_epochs, display_step=10):
     output: 
         U, V: 分解后的矩阵
     '''
+    # m : users num
+    # n : items num
     m, n = np.shape(data)
 
     # 1.初始化输入R
