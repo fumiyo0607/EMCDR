@@ -22,15 +22,19 @@ emcdr/
 ¦       +-- doc2vec/
 ¦       ¦    +-- doc2vec_{PARAMETERS}_{source / target}_{trained / mapped}
 ¦       +-- lda/
-¦            +-- lda_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       ¦    +-- lda_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       +-- mlp/
 ¦ 
 +-- vector/
 ¦   +-- users/
 ¦       +-- bpr/
-¦       ¦    +-- bpr_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       ¦    +-- bpr_{PARAMETERS}_{source / target}_trained
+¦       ¦    +-- bpr_{PARAMETERS}_mlp_{PARAMETERS}_target_mapped
 ¦       +-- doc2vec/
-¦       ¦    +-- doc2vec_{PARAMETERS}_{source / target}_{trained / mapped}
+¦       ¦    +-- doc2vec_{PARAMETERS}_{source / target}_trained
+¦       ¦    +-- doc2vec_{PARAMETERS}_mlp_{PARAMETERS}_target_mapped
 ¦       +-- lda/
-¦            +-- lda_{PARAMETERS}_{source / target}_{trained / mapped}
+¦            +-- lda_{PARAMETERS}_{source / target}_trained
+¦            +-- lda_{PARAMETERS}_mlp_{PARAMETERS}_target_mapped
 +-- data/
 ```
