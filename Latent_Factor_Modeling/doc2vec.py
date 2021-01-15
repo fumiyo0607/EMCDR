@@ -32,7 +32,7 @@ class MyDoc2Vec():
         self.model.train(corpus, total_examples=self.model.corpus_count, epochs=self.model.epochs)
         # save model
         util.ensure_dir('./model/doc2vec')
-        self.model.save("./model/doc2vec/doc2vec_vector_size={}-epochs={}_{}.model".format(self.vector_size, self.model.epochs, save_file_name))
+        util.save_pickle("./model/doc2vec/doc2vec_vector_size={}-epochs={}_{}".format(self.vector_size, self.model.epochs, save_file_name), self)
 
     def get_user_vecs(self, user_ids):
         # user_ids: [0 , (user_num - 1)]
@@ -40,10 +40,15 @@ class MyDoc2Vec():
         for u in user_ids:
             user_vecs[int(u)] = self.model.docvecs[u]
         return user_vecs
-    
+
+    def predict(self, user_vec, top_n):
+        similar_items = self.model.most_similar(positive=[user_vec], topn=top_n)
+        return [ i[0] for i in similar_items]
+        
     @staticmethod
     def load_model(save_file_name: str, vector_size=50, epochs=100):
-        model = models.Doc2Vec.load("./model/doc2vec/doc2vec_vector_size={}-epochs={}_{}.model".format(vector_size, epochs, save_file_name))
+        # MyDoc2Vec
+        model = util.load_pickle("./model/doc2vec/doc2vec_vector_size={}-epochs={}_{}".format(vector_size, epochs, save_file_name))
         return model
     
     @staticmethod
