@@ -33,6 +33,8 @@ def mapping(path_s, path_t, training_epochs=300, learning_rate=0.03, beta=0.001,
             xt = model.latent_space_mapping(sess, xs)
             Xt.append(xt.reshape([model.k]).tolist())
     Xt = np.array(Xt)
-    path_save = path_t.replace('trained.npy', 'mapped')
+    path_save = path_t.replace( 'target_trained.npy', 
+                                'mlp_epochs={}_hidden_layer_num={}_target_mapped'
+                                .format(training_epochs, model.hidden_layer_size))
     np.save(path_save, Xt)
     return loss, Xt
