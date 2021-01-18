@@ -2,6 +2,7 @@
 import os
 import pickle
 import numpy as np
+from parameter_setting import Mapping
 
 def save_pickle(path, x):
     path = path +'.pickle'
@@ -24,3 +25,18 @@ def load_np_user_vector(path_s, path_t):
     U_s_train = U_s[:U_t_train.shape[0], :]
     U_s_test  = U_s[U_t_train.shape[0]:,:]
     return U_s_train, U_s_test, U_t_train 
+
+def trained_latent_factor_vec_parh(setting: Mapping):
+    path_s = './vector/users/{}/{}_vector_size={}_epochs={}_source_trained.npy'.format(
+        setting.latent_facor_model.model,
+        setting.latent_facor_model.model,
+        setting.latent_facor_model.facter_size,
+        setting.latent_facor_model.train_num,
+    )
+    path_t = './vector/users/{}/{}_vector_size={}_epochs={}_target_trained.npy'.format(
+        setting.latent_facor_model.model,
+        setting.latent_facor_model.model,
+        setting.latent_facor_model.facter_size,
+        setting.latent_facor_model.train_num,
+    )
+    return path_s, path_t
