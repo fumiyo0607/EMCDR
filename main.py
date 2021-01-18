@@ -21,7 +21,7 @@ if __name__ == "__main__":
     create_latent_factor.doc2vec_target(vector_size=setting_latent_factor.facter_size, epochs=setting_latent_factor.train_num)
 
     '''****************************
-    Step 2. Mapping Latent 
+    Step 2. Mapping Latent Factors
     '''
     ## Doc2vec
     path_s, path_t = util.trained_latent_factor_vec_parh(setting=setting)
