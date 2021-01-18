@@ -34,6 +34,7 @@ def doc2vec(setting: Mapping, top_n=30, data_t_path='./data/data_s_train_p=0.csv
     for u, uid in enumerate(users_test):
         user_vec = Xt[u]
         pred_items = model_t.predict(user_vec, top_n)
+        pred_items = [ int(i) for i in pred_items ]
         test_items = users_test_data[uid]
         c = 0
         for i in pred_items:
