@@ -5,7 +5,7 @@ import random
 import itertools
 from tqdm.notebook import tqdm
 
-def load(source_data='Books.csv', target_data='Movies_and_TV.csv', min_num_i = 5, min_num_u = 20):
+def load(min_num_i = 20, min_num_u = 20, source_data='Books.csv', target_data='Movies_and_TV.csv'):
     df_s = pd.read_csv('./data/{}'.format(source_data), header=None)
     df_t = pd.read_csv('./data/{}'.format(target_data), header=None)
 
@@ -23,7 +23,7 @@ def load(source_data='Books.csv', target_data='Movies_and_TV.csv', min_num_i = 5
         user_s_c[u] += 1
 
     user_s_cc = list(user_s_c.values())
-
+    print('source doain user count', source_data)
     print('max:', max(user_s_cc))
     print('min:', min(user_s_cc))
 
@@ -35,7 +35,7 @@ def load(source_data='Books.csv', target_data='Movies_and_TV.csv', min_num_i = 5
         user_t_c[u] += 1
 
     user_t_cc = list(user_t_c.values())
-
+    print('target doain user count', target_data)
     print('max:', max(user_t_cc))
     print('min:', min(user_t_cc))
 
@@ -66,7 +66,8 @@ def load(source_data='Books.csv', target_data='Movies_and_TV.csv', min_num_i = 5
     for i, c in item_t_c.items():
         if c >= min_num_i:
             item_t_val.append(i)
-
+    
+    print('firtering items done .. !!')
     print('item_s_val_num : ', len(item_s_val))
     print('item_t_val_num : ', len(item_t_val))
 
@@ -101,7 +102,8 @@ def load(source_data='Books.csv', target_data='Movies_and_TV.csv', min_num_i = 5
     for u in tqdm(user_t_val):
         if u in user_s_val:
             user_all_val.append(u)
-
+    
+    print('firtering users done .. !!')
     print('user_val_num : ', len(user_all_val))
 
     df_s = df_s.query('user_id in {}'.format(user_all_val))

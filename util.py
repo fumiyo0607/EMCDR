@@ -27,16 +27,30 @@ def load_np_user_vector(path_s, path_t):
     return U_s_train, U_s_test, U_t_train 
 
 def trained_latent_factor_vec_parh(setting: Mapping):
-    path_s = './vector/users/{}/{}_vector_size={}_epochs={}_source_trained.npy'.format(
-        setting.latent_facor_model.model,
-        setting.latent_facor_model.model,
-        setting.latent_facor_model.facter_size,
-        setting.latent_facor_model.train_num,
-    )
-    path_t = './vector/users/{}/{}_vector_size={}_epochs={}_target_trained.npy'.format(
-        setting.latent_facor_model.model,
-        setting.latent_facor_model.model,
-        setting.latent_facor_model.facter_size,
-        setting.latent_facor_model.train_num,
-    )
+    if setting.latent_facor_model.model == 'doc2vec':
+        path_s = './vector/users/{}/{}_vector_size={}_epochs={}_source_trained.npy'.format(
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.facter_size,
+            setting.latent_facor_model.train_num,
+        )
+        path_t = './vector/users/{}/{}_vector_size={}_epochs={}_target_trained.npy'.format(
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.facter_size,
+            setting.latent_facor_model.train_num,
+        )
+    elif setting.latent_facor_model.model == 'lda':
+        path_s = './vector/users/{}/{}_topic_num={}_iter={}_source_trained.npy'.format(
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.facter_size,
+            setting.latent_facor_model.train_num,
+        )
+        path_t = './vector/users/{}/{}_topic_num={}_iter={}_target_trained.npy'.format(
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.model,
+            setting.latent_facor_model.facter_size,
+            setting.latent_facor_model.train_num,
+        )
     return path_s, path_t

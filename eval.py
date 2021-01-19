@@ -76,4 +76,6 @@ def doc2vec_train_target(setting: Mapping, top_n=30):
         hit.append(c/top_n)
     return sum(hit) / len(hit)
 
-# def lda():
+def lda(setting: Mapping):
+    # add code ..
+    return
