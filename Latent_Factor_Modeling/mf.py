@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow.contrib import layers
+import util
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' 
 
