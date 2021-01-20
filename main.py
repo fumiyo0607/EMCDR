@@ -20,12 +20,14 @@ if __name__ == "__main__":
     create_latent_factor.doc2vec_source(vector_size=setting_latent_factor.facter_size, epochs=setting_latent_factor.train_num)
     create_latent_factor.doc2vec_target(vector_size=setting_latent_factor.facter_size, epochs=setting_latent_factor.train_num)
 
+    ## lda
+    create_latent_factor.lda_source(topic_num=setting_latent_factor.facter_size, iters=setting_latent_factor.train_num)
+    create_latent_factor.lda_target(topic_num=setting_latent_factor.facter_size, iters=setting_latent_factor.train_num)
+
     '''****************************
     Step 2. Mapping Latent Factors
     '''
-    ## Doc2vec
-    path_s, path_t = util.trained_latent_factor_vec_parh(setting=setting)
-    loss, Xt = mapping_latent_factor.mapping(path_s, path_t, setting_mlp.hidden_layer_size, setting_mlp.train_num)
+    loss, Xt = mapping_latent_factor.mapping(setting=setting, learning_rate=0.1)
 
     '''****************************
     Step 3. Evaluation
