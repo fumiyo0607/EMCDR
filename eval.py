@@ -3,6 +3,7 @@ import pandas as pd
 import util
 from collections import defaultdict
 from Latent_Factor_Modeling.doc2vec import MyDoc2Vec
+from Latent_Factor_Modeling.lda import MyLDA
 from parameter_setting import Mapping
 
 def _get_test_users(data_t_test_path='./data/data_t_test_p=0.csv'):
@@ -31,11 +32,7 @@ def _get_train_users(data_t_train_path='./data/data_t_train_p=0.csv'):
 def doc2vec(setting: Mapping, top_n=30, data_t_path='./data/data_s_train_p=0.csv'):
     users_test_data = _get_test_users()
     users_test = list(users_test_data.keys())
-    save_path = './vector/users/doc2vec/doc2vec_vector_size={}_epochs={}_mlp_epochs={}_hidden_layer_num={}_target_mapped.npy'.format(
-                        setting.latent_facor_model.facter_size, 
-                        setting.latent_facor_model.train_num, 
-                        setting.mlp.train_num, 
-                        setting.mlp.hidden_layer_size)
+    save_path = util.mapped_target_latent_factor_vec_path(setting=setting)
     Xt = np.load(save_path)
     hit = []
     model_t = MyDoc2Vec.load_model(
@@ -60,10 +57,10 @@ def doc2vec_train_target(setting: Mapping, top_n=30):
     users_test = list(users_train_data.keys())
     hit = []
     model_t = MyDoc2Vec.load_model(
-                vector_size    = setting.latent_facor_model.facter_size, 
-                epochs         = setting.latent_facor_model.train_num, 
-                save_file_name = 'target_trained')
-
+                    vector_size    = setting.latent_facor_model.facter_size, 
+                    epochs         = setting.latent_facor_model.train_num, 
+                    save_file_name = 'target_trained'
+                )
     for uid in users_test:
         user_vec = model_t.model.docvecs[str(uid)]
         pred_items = model_t.predict(user_vec, top_n)
@@ -76,6 +73,25 @@ def doc2vec_train_target(setting: Mapping, top_n=30):
         hit.append(c/top_n)
     return sum(hit) / len(hit)
 
-def lda(setting: Mapping):
-    # add code ..
-    return
+def lda(setting: Mapping, top_n=30):
+    users_test_data = _get_test_users()
+    users_test = list(users_test_data.keys())
+    save_path = util.mapped_target_latent_factor_vec_path(setting=setting)
+    Xt = np.load(save_path)
+    lda = MyLDA.load_model(
+            topic_num = setting.latent_facor_model.facter_size,
+            iteration = setting.latent_facor_model.train_num,
+            save_file_name = 'target_trained'
+        )
+    hit = []
+    for u, uid in enumerate(users_test):
+        user_vec = Xt[u]
+        pred_items = lda.predict(user_vec, top_n)
+        pred_items = [ int(i) for i in pred_items ]
+        test_items = users_test_data[uid]
+        c = 0
+        for i in pred_items:
+            if i in test_items:
+                c += 1
+        hit.append(c/top_n)
+    return sum(hit) / len(hit)

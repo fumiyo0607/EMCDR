@@ -12,7 +12,7 @@ from parameter_setting import Mapping
 '''
 
 def mapping(setting: Mapping, learning_rate=0.03, beta=0.001, display_step=100):
-    path_s, path_t    = util.trained_latent_factor_vec_parh(setting=setting)
+    path_s, path_t    = util.trained_latent_factor_vec_path(setting=setting)
     hidden_layer_size = setting.mlp.hidden_layer_size
     training_epochs   = setting.mlp.train_num
     activation_fuc    = setting.mlp.activation_func

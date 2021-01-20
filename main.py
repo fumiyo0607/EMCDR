@@ -27,9 +27,7 @@ if __name__ == "__main__":
     '''****************************
     Step 2. Mapping Latent Factors
     '''
-    ## Doc2vec
-    path_s, path_t = util.trained_latent_factor_vec_parh(setting=setting)
-    loss, Xt = mapping_latent_factor.mapping(path_s, path_t, setting_mlp.hidden_layer_size, setting_mlp.train_num)
+    loss, Xt = mapping_latent_factor.mapping(setting=setting, learning_rate=0.1)
 
     '''****************************
     Step 3. Evaluation
