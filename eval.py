@@ -5,6 +5,7 @@ from collections import defaultdict
 from Latent_Factor_Modeling.doc2vec import MyDoc2Vec
 from Latent_Factor_Modeling.lda import MyLDA
 from parameter_setting import Mapping
+from tqdm.notebook import tqdm
 
 def _get_test_users(data_t_test_path='./data/data_t_test_p=0.csv'):
     print(data_t_test_path)
@@ -89,6 +90,28 @@ def lda(setting: Mapping, top_n=30):
         pred_items = lda.predict(user_vec, top_n)
         pred_items = [ int(i) for i in pred_items ]
         test_items = users_test_data[uid]
+        c = 0
+        for i in pred_items:
+            if i in test_items:
+                c += 1
+        hit.append(c/top_n)
+    return sum(hit) / len(hit)
+
+def lda_train_target(setting: Mapping, top_n=30):
+    users_train_data = _get_train_users()
+    users_test = list(users_train_data.keys())
+    hit = []
+    lda = MyLDA.load_model(
+            topic_num = setting.latent_facor_model.facter_size,
+            iteration = setting.latent_facor_model.train_num,
+            save_file_name = 'target_trained'
+        )
+    Ut = lda.model.transform(lda.bow)
+    for uid in tqdm(users_test):
+        user_vec = Ut[uid]
+        pred_items = lda.predict(user_vec, top_n)
+        pred_items = [ int(i) for i in pred_items ]
+        test_items = users_train_data[uid]
         c = 0
         for i in pred_items:
             if i in test_items:
