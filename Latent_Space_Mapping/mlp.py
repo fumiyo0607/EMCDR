@@ -49,8 +49,8 @@ class MLP():
                 self.pred   = tf.nn.relu(tf.matmul(self.w2, self.hidden1) + self.b2)
                 self.pred_x = tf.nn.relu(tf.matmul(self.w2, self.hidden1_x) + self.b2)
             elif activation_fuc == 'softmax':
-                self.pred   = tf.nn.softmax(tf.matmul(self.w2, self.hidden1) + self.b2)
-                self.pred_x = tf.nn.softmax(tf.matmul(self.w2, self.hidden1_x) + self.b2)
+                self.pred   = tf.nn.softmax(tf.matmul(self.w2, self.hidden1) + self.b2, axis=0)
+                self.pred_x = tf.nn.softmax(tf.matmul(self.w2, self.hidden1_x) + self.b2, axis=0)
             
             self.cost = tf.reduce_mean(tf.square(self.Vt - self.pred)) + self.reg_w1 + self.reg_w2
             self.train_step = tf.train.AdagradOptimizer(self.learning_rate).minimize(self.cost)
